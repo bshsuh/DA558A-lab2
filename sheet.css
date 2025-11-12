@@ -1,3 +1,4 @@
+
 * {
     font-family: 'Roboto', 'Arial', 'sans-serif';
 }
@@ -5,4 +6,33 @@
 /* Shrinking rules if webpage window is 600px or smaller */
 @media all and (max-width: 600px) {
 
+}
+nav { 
+    margin-top: 2%;
+    display: flex; 
+    gap: 0; 
+    width: 100%;
+}
+nav button {
+    flex: 1;
+    padding: 1%;
+    font-size: 120%;
+    border: 7px solid #7f483b;
+    border-right: none;
+    background-color: #4a1e29;
+    color: #ffffff;
+}
+
+nav button:hover {
+    background-color: #924939;
+    cursor: pointer;
+}
+
+/* Set buttons focus effect and exclude current webpage from focus and hover effects */
+nav button:focus, .currentpage, .currentpage:hover {
+    background-color: #652938;
+}
+
+.lastbutton {  
+    border-right: 7px solid #7f483b;
 }
