@@ -3,16 +3,13 @@
     font-family: 'Roboto', 'Arial', 'sans-serif';
 }
 
-/* Shrinking rules if webpage window is 600px or smaller */
-@media all and (max-width: 600px) {
-
-}
 nav { 
     margin-top: 2%;
     display: flex; 
     gap: 0; 
     width: 100%;
 }
+
 nav button {
     flex: 1;
     padding: 1%;
@@ -35,4 +32,26 @@ nav button:focus, .currentpage, .currentpage:hover {
 
 .lastbutton {  
     border-right: 7px solid #7f483b;
+}
+
+main {
+    display: flex;
+    margin-top: 2%;
+    gap: 5%;  
+}
+
+.portrait {
+    width: 20vw;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Shrinking rules if webpage window is 600px or smaller */
+@media all and (max-width: 600px) {
+    main {
+        flex-direction: column;
+    }
+    section:has(.portrait) {
+        display: flex;   
+    }
 }
