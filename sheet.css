@@ -60,7 +60,7 @@ main {
 /* Specified labels are set on the same row */
 #mailtoform .inline-labels {
     display: flex;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /* modifiy the content of labels in mailtoform*/
@@ -68,13 +68,12 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 #mailtoform input, #mailtoform textarea {
-    padding: 0.8em;
+    padding: 0.6em;
     margin-right: 10px; 
-    margin-top: 5px;
     margin-bottom: 10px;
     border-width: 2px;
     border-radius: 5px;
@@ -82,8 +81,8 @@ main {
 
 #mailtoform button {
     align-self: center;
-    padding: 8px;
-    margin-top: 10px;
+    padding: 6px;
+    margin-top: 5px;
     width: 15%;
     font-size: 1.1em;
 }
