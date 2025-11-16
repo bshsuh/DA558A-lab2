@@ -1,6 +1,16 @@
 
-* {
+*:not(input, textarea, button) {
     font-family: 'Roboto', 'Arial', 'sans-serif';
+    background-color: #2f0803;
+    color: #ece4e4;
+}
+
+body {
+    margin: 0px;
+}
+
+footer {
+    padding: 1px;
 }
 
 nav { 
@@ -86,6 +96,12 @@ main {
     width: 15%;
     font-size: 1.1em;
 }
+
+footer, footer *:not(input, textarea, button) {
+    background-color: #220501;
+}
+
+
 
 /* Shrinking rules if webpage window is 600px or smaller */
 @media all and (max-width: 800px) {
