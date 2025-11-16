@@ -4,8 +4,8 @@
 }
 
 nav { 
-    margin-top: 2%;
     display: flex; 
+    margin-top: 2%;
     gap: 0; 
     width: 100%;
 }
@@ -46,12 +46,58 @@ main {
     border-radius: 50%;
 }
 
+/* edit the line spaces of the list elements next to the photo */
+.portrait + * * {
+    margin-bottom: 10px;
+}
+
+#mailtoform {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Specified labels are set on the same row */
+#mailtoform .inline-labels {
+    display: flex;
+    margin-top: 20px;
+}
+
+/* modifiy the content of labels in mailtoform*/
+#mailtoform label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+#mailtoform input, #mailtoform textarea {
+    padding: 0.8em;
+    margin-right: 10px; 
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+#mailtoform button {
+    align-self: center;
+    padding: 8px;
+    margin-top: 10px;
+    width: 15%;
+    font-size: 1.1em;
+}
+
 /* Shrinking rules if webpage window is 600px or smaller */
-@media all and (max-width: 600px) {
+@media all and (max-width: 800px) {
     main {
         flex-direction: column;
     }
     section:has(.portrait) {
         display: flex;   
+    }
+    #mailtoform .inline-labels {
+    display: flex;
+    flex-direction: column;
     }
 }
