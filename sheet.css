@@ -61,11 +61,46 @@ main {
     margin-bottom: 10px;
 }
 
+.skills {
+    display: flex;
+    gap: 3em;
+    padding: 5px;
+    align-items: center; /* align meter bars and label texts on the same level */
+}
+
+.skills label {
+    width: 0;
+    font-size: 20px;
+    min-width: 50px;
+    flex-shrink: 0;
+}
+
+/* Increase item markers' size */
+li:has(.skills) {
+    font-size: 30px;
+}
+
+.skills meter {
+    width: 90%;
+    height: 30px;
+}
+
+/* rounding meter bar's corners */
+meter::-webkit-meter-bar {
+  border-radius: 10px;
+  background: #ffd9c8;
+}
+
+meter::-webkit-meter-optimum-value,
+meter::-webkit-meter-suboptimum-value,
+meter::-webkit-meter-even-less-good-value {
+  background: linear-gradient(#ffd9c8, #c04b3a);
+}
+
 #mailtoform {
     display: flex;
     flex-direction: column;
 }
-
 
 /* Specified labels are set on the same row */
 #mailtoform .inline-labels {
@@ -100,8 +135,6 @@ main {
 footer, footer *:not(input, textarea, button) {
     background-color: #220501;
 }
-
-
 
 /* Shrinking rules if webpage window is 600px or smaller */
 @media all and (max-width: 800px) {
