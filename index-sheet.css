@@ -1,0 +1,54 @@
+main {
+    display: flex;
+    margin-top: 2%;
+    gap: 5%;  
+}
+
+.portrait {
+    width: 20vw;
+    height: auto;
+    border-radius: 50%;
+}
+
+/* edit the line spaces of the list elements next to the photo */
+.portrait + * * {
+    margin-bottom: 10px;
+}
+
+.skills {
+    display: flex;
+    gap: 3em;
+    padding: 5px;
+    align-items: center; /* align meter bars and label texts on the same level */
+}
+
+.skills label {
+    width: 0;
+    font-size: 20px;
+    min-width: 50px;
+    flex-shrink: 0;
+}
+
+/* Increase item markers' size */
+li:has(.skills) {
+    font-size: 30px;
+}
+
+.skills meter {
+    width: 90%;
+    height: 30px;
+}
+
+/* Shrinking rules if webpage window is 600px or smaller */
+@media all and (max-width: 800px) {
+    main {
+        flex-direction: column;
+    }
+    section:has(.portrait) {
+        display: flex;   
+    }
+    #mailtoform .inline-labels {
+    display: flex;
+    flex-direction: column;
+    }
+}

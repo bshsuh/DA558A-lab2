@@ -1,22 +1,27 @@
 
+/* General style sheet that applies to the entire website */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 *:not(input, textarea, button) {
     font-family: 'Roboto', 'Arial', 'sans-serif';
     background-color: #2f0803;
     color: #ece4e4;
 }
 
+/* Allow the navbar and the footer background to stretch to the page edges */
 body {
     margin: 0px;
 }
 
-footer {
-    padding: 1px;
+/* Default margin settings applied for certain elements */
+body .wrapper { 
+    margin: 8px;
 }
 
 nav { 
     display: flex; 
     margin-top: 2%;
-    gap: 0; 
+    margin-bottom: 5%;
     width: 100%;
 }
 
@@ -44,47 +49,6 @@ nav button:focus, .currentpage, .currentpage:hover {
     border-right: 7px solid #7f483b;
 }
 
-main {
-    display: flex;
-    margin-top: 2%;
-    gap: 5%;  
-}
-
-.portrait {
-    width: 20vw;
-    height: auto;
-    border-radius: 50%;
-}
-
-/* edit the line spaces of the list elements next to the photo */
-.portrait + * * {
-    margin-bottom: 10px;
-}
-
-.skills {
-    display: flex;
-    gap: 3em;
-    padding: 5px;
-    align-items: center; /* align meter bars and label texts on the same level */
-}
-
-.skills label {
-    width: 0;
-    font-size: 20px;
-    min-width: 50px;
-    flex-shrink: 0;
-}
-
-/* Increase item markers' size */
-li:has(.skills) {
-    font-size: 30px;
-}
-
-.skills meter {
-    width: 90%;
-    height: 30px;
-}
-
 /* rounding meter bar's corners */
 meter::-webkit-meter-bar {
   border-radius: 10px;
@@ -97,6 +61,7 @@ meter::-webkit-meter-even-less-good-value {
   background: linear-gradient(#ffd9c8, #c04b3a);
 }
 
+/* "Contact me" section*/
 #mailtoform {
     display: flex;
     flex-direction: column;
@@ -108,7 +73,7 @@ meter::-webkit-meter-even-less-good-value {
     margin-top: 10px;
 }
 
-/* modifiy the content of labels in mailtoform*/
+/* Modifiy the content of labels in mailtoform*/
 #mailtoform label {
     display: flex;
     flex-direction: column;
@@ -117,8 +82,7 @@ meter::-webkit-meter-even-less-good-value {
 }
 
 #mailtoform input, #mailtoform textarea {
-    padding: 0.6em;
-    margin-right: 10px; 
+    padding: 0.6em; /* Bigger fields*/
     margin-bottom: 10px;
     border-width: 2px;
     border-radius: 5px;
@@ -132,20 +96,14 @@ meter::-webkit-meter-even-less-good-value {
     font-size: 1.1em;
 }
 
+footer {
+    padding: 1px;
+}
+
 footer, footer *:not(input, textarea, button) {
     background-color: #220501;
 }
 
-/* Shrinking rules if webpage window is 600px or smaller */
-@media all and (max-width: 800px) {
-    main {
-        flex-direction: column;
-    }
-    section:has(.portrait) {
-        display: flex;   
-    }
-    #mailtoform .inline-labels {
-    display: flex;
-    flex-direction: column;
-    }
+footer * {
+    margin: 8px;
 }
