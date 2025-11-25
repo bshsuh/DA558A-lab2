@@ -15,6 +15,16 @@ main {
     margin-bottom: 10px;
 }
 
+article {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+/*skills and goals have equal width*/
+article > * {
+    flex: 1;
+}
+
 .skills {
     display: flex;
     gap: 3em;
@@ -24,13 +34,17 @@ main {
 
 .skills label {
     width: 0;
-    font-size: 20px;
     min-width: 50px;
     flex-shrink: 0;
 }
 
+/* Font-size for skills and goals */
+article li * {
+    font-size: 20px;
+}
+
 /* Increase item markers' size */
-li:has(.skills) {
+article li {
     font-size: 30px;
 }
 
@@ -47,8 +61,12 @@ li:has(.skills) {
     section:has(.portrait) {
         display: flex;   
     }
+    article {
+        flex-direction: column;
+    }
     #mailtoform .inline-labels {
     display: flex;
     flex-direction: column;
     }
+
 }

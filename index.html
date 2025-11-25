@@ -11,7 +11,7 @@
     <nav>
         <button class= "currentpage" onclick="location.href='index.html'">Home</button>
         <button onclick="location.href='#mailtoform'">Contact</button>
-        <button onclick="location.href='index.html'">Goals</button>
+        <button onclick="location.href='#goals'">Goals</button>
         <button class= "lastbutton" onclick="location.href='./external-page.html'">External Page</button>
     </nav>
 
@@ -41,21 +41,33 @@
             </section>
         </main>
         <article>
-            <h2>Skills</h2>
-            <ul> 
-                <li><div class="skills">
-                    <label>HTML</label> 
-                    <meter value="0.6"></meter>
-                </div></li>
-                <li><div class="skills">
-                    <label>CSS</label> 
-                    <meter value="0.6"></meter>
-                </div></li>
-                <li><div class="skills">
-                    <label>javascript</label> 
-                    <meter value="0.05"></meter>
-                </div></li>
-            </ul>
+            <div id = "skills">
+                <h2>Skills</h2>
+                <ul> 
+                    <li><div class="skills">
+                        <label>HTML</label> 
+                        <meter value="0.6"></meter>
+                    </div></li>
+                    <li><div class="skills">
+                        <label>CSS</label> 
+                        <meter value="0.6"></meter>
+                    </div></li>
+                    <li><div class="skills">
+                        <label>JavaScript</label> 
+                        <meter value="0.05"></meter>
+                    </div></li>
+                </ul>
+            </div>
+            <div id = "goals">
+                <h2>Goals</h2>
+                <ul>
+                    <!-- Using <wrap> to control markers and text size seperately-->
+                    <li><wrap>Get the bachelor degree</wrap></li>
+                    <li><wrap>Make a couple of projects to improve my overall programming skills</wrap></li>
+                    <li><wrap>Find a suitable job for my current skills</wrap></li>
+                    <li><wrap>Get a driving license</wrap></li>
+                </ul>
+            </div>
         </article>
     </div>
 
