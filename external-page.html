@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="global-sheet.css"/>
     <link rel="stylesheet" href="external-page-sheet.css"/>
-    <title>Interests</title>
+    <title>About me</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico"/>
 </head>
 <body>
     <nav>
@@ -14,8 +15,10 @@
         <button onclick="location.href='./index.html#goals'">Goals</button>
         <button class= "currentpage lastbutton" onclick="location.href='external-page.html'">External Page</button>
     </nav>
+
     <div class="wrapper"> <!-- pivot content off the webpage edges-->
-        <main>
+        <main id = "hobbies">
+            <h1>Hobbies</h1>
             <section class ="hobbies">
                 <wrap> <!-- wrap all images for consistent size regardless of actual image's size-->
                     <img
@@ -40,7 +43,24 @@
             </section>
             <p class ="hobbies-text">Playing single-player games while having someone else's gameplay on the side is my usual go-to</p>
         </main>
+
+        <article id = "projects">
+            <h1>Personal Projects</h1>
+            <ul>
+                <li>
+                    <b>Website development:</b> Creating a personal, hybrid website that contains my portfolio, 
+                    a prototype form for game challanges, a fictional store webpage and so on.
+                </li>
+                <li>
+                    <b>Finish a game prototype:</b> Using Unity to create a small game prototype to excerise what I have learned about game development.
+                </li>
+                <li>
+                    <b>Audio/video editing:</b> Practise audio and video editing using softwares like Audacity and DaVinci Resolve.
+                </li>
+            </ul>
+        </article>
     </div>
+
     <footer>
         <form id = "mailtoform" action="mailto:bshr.suheil0001@stud.hkr.se" method="post" enctype="text/plain">
             <h2 style= "margin-bottom: 0px">Contant me</h2>
