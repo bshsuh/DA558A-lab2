@@ -1,3 +1,4 @@
+<!-- Main HTML document for About Me page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,41 +10,51 @@
     <link rel="stylesheet" href="index-sheet.css"/>
 </head>
 <body>
+    <!-- Navigation bar -->
     <nav>
-        <button class= "currentpage" onclick="location.href='index.html'">Home</button>
+        <button class= "currentpage" onclick="location.href='index.html'">Home</button> <!-- Classified button for focus effects -->
         <button onclick="location.href='#mailtoform'">Contact</button>
         <button onclick="location.href='#goals'">Goals</button>
         <button class= "lastbutton" onclick="location.href='./external-page.html'">External Page</button>
     </nav>
 
-    <div class="wrapper"> <!-- pivot content off the webpage edges-->
-        <!-- Portfolio about me -->
+    <div class="wrapper">
+        <!-- Portfolio and about me section -->
         <main>
-            <section>
+            <section class = "card">
                 <img
                     class= "portrait"
                     src= "images/me.png"
                     alt= "Bisher Suhail, author of the website"
                 />
+                <!-- Personal info in bullet points -->
                 <ul class= "personal-info">
                     <li><b>Name:</b> Bisher Suhail</li>
-                    <li><b>Occupation:</b> Student at Centennial College</li>
-                    <li><b>Program:</b> Computer Programming and Analysis</li>
+                    <li><b>Occupation:</b> Student at Guthenburg University</li>
+                    <li><b>Program:</b> Computer Science</li>
                     <li><b>Email:</b> bshr.suheil0001@stud.hkr.se</li>
                 </ul>
             </section>
-            <section>
+            <section class ="about-me">
                 <h1>About me</h1>
-                <p>Hello! My name is Bisher Suhail, and I am a dedicated student at Centennial College pursuing a diploma in Computer Programming and Analysis. My passion for technology and coding drives me to continuously learn and improve my skills in this ever-evolving field.</p>
-                <p>Throughout my academic journey, I have gained hands-on experience in various programming languages, software development methodologies, and problem-solving techniques. I am particularly interested in web development, software engineering, and data analysis.</p>
-                <p>In addition to my studies, I actively participate in coding competitions and hackathons to challenge myself and collaborate with fellow enthusiasts. I believe that teamwork and continuous learning are essential for growth in the tech industry.</p>
-                <p>Outside of academics, I enjoy exploring new technologies, reading tech blogs, and contributing to open-source projects. My goal is to leverage my skills and knowledge to make a positive impact in the tech world and contribute to innovative solutions that can benefit society.</p>
-                <p>Thank you for taking the time to learn more about me. I am excited about the opportunities that lie ahead and look forward to connecting with like-minded individuals in the tech community.</p>
+                <!-- About me text paragraphs -->
+                <p>Hello! My name is Bisher Suhail, and I am a  student at Guthenburg University pursuing a bachelor in computer science. 
+                    My passion for technology and coding drives me to continuously learn and improve my skills in this ever-evolving field.</p>
+                <p>Throughout my academic journey, I have gained hands-on experience in various programming languages, 
+                    software development methodologies, and problem-solving techniques. 
+                    I am particularly interested in web development, software engineering, and data analysis.</p>
+                <p>Outside of academics, I enjoy exploring new technologies and reading tech blogs. 
+                    My goal is to leverage my skills and knowledge to make a positive impact in the tech world and contribute 
+                    to innovative solutions that can benefit society.</p>
+                <p>Thank you for taking the time to learn more about me.</p>
             </section>
         </main>
+        
+        <!-- Skills and goals section -->
+        <!-- Additional wrappers to control list items' markers-->
         <article>
             <div id = "skills">
-                <h2>Skills</h2>
+                <h1>Skills</h1>
                 <ul> 
                     <li><div class="skills">
                         <label>HTML</label> 
@@ -60,7 +71,7 @@
                 </ul>
             </div>
             <div id = "goals">
-                <h2>Goals</h2>
+                <h1>Goals</h1>
                 <ul>
                     <!-- Using <wrap> to control markers and text size seperately-->
                     <li><wrap>Get the bachelor degree</wrap></li>
@@ -72,6 +83,7 @@
         </article>
     </div>
 
+    <!-- Footer with mailtoform -->
     <footer>
         <form id = "mailtoform" action="mailto:bshr.suheil0001@stud.hkr.se" method="post" enctype="text/plain">
             <h2 style= "margin-bottom: 0px">Contant me</h2>

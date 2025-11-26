@@ -1,26 +1,44 @@
+/* Main layout container */
 main {
     display: flex;
-    margin-top: 2%;
     gap: 5%;  
+}
+
+/* Card's background color */
+.card, .card * {
+    background-color: rgb(76, 2, 2);
+}
+
+.card {
+    padding: 20px;
+    border-top: 10px  solid rgb(76, 2, 2);
+}
+
+.card ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+/* List item spacing in card */
+.card li {
+    margin-bottom: 10px;
 }
 
 .portrait {
     width: 20vw;
     height: auto;
     border-radius: 50%;
+    border: 5px solid #7f483b;
 }
 
-/* edit the line spaces of the list elements next to the photo */
-.portrait + * * {
-    margin-bottom: 10px;
-}
-
+/* Skills and goals layout */
 article {
     display: flex;
     justify-content: center;
     gap: 5%;
 }
-/*skills and goals have equal width*/
+
+/* Equal width for skills and goals sections */
 article > * {
     flex: 1;
 }
@@ -33,30 +51,34 @@ article > * {
 }
 
 .skills label {
-    width: 0;
+    width: 0; /* consistent spacing between labels and bars*/
     min-width: 50px;
     flex-shrink: 0;
 }
 
-/* Font-size for skills and goals */
+/* Font size for skills and goals */
 article li * {
     font-size: 20px;
 }
 
-/* Increase item markers' size */
+/* List item marker size */
 article li {
     font-size: 30px;
 }
 
+/* Skills meter bar styling */
 .skills meter {
     width: 90%;
     height: 30px;
 }
 
-/* Shrinking rules if webpage window is 600px or smaller */
 @media all and (max-width: 800px) {
     main {
         flex-direction: column;
+    }
+
+    main .card ul {
+        padding-left: 10%;
     }
     section:has(.portrait) {
         display: flex;   
@@ -68,5 +90,18 @@ article li {
     display: flex;
     flex-direction: column;
     }
+}
 
+/* Bigger font size for larger screens */
+@media all and (min-width: 1200px) {
+    .portrait {
+        width: 15vw;
+    }
+    .about-me, .card li {
+        font-size: 1.3em;
+    }
+
+    article label, article li * {
+        font-size: 23px;
+    }
 }

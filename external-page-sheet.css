@@ -1,10 +1,11 @@
-
+/* Styles for hobbies section */
 .hobbies {
     display: flex;
     justify-content: center;
     gap: 5vw;
 }
 
+/* Styles for hobby images */
 .hobbies img{
     border: 10px solid #6a6666ae;
     box-shadow: 0 0 0 6px #000000; 
@@ -13,22 +14,27 @@
     object-fit: cover; 
 }
 
+/* Text under hobbies section */
 .hobbies-text {
     text-align: center;
     font-size: 1.5em;
-    margin-bottom: 30px;
 }
 
- #projects li
-{
+/* Projects section margin */
+#projects {
+    margin-top: 40px;
+}
+
+/* Project list item styles */
+#projects li {
     font-size: 1.2em;
     margin: 30px;
 }
 
+/* List item font size in projects */
 #projects li b, #projects li {
     font-size: 1.22em;
 }
-
 
 @media all and (max-width: 800px) {
     #hobbies h1 {
@@ -43,5 +49,8 @@
         width: 30vw;
         height: 30vw;
     }
-}
 
+    .hobbies-text {
+        font-size: 1.2em;
+    }
+}
