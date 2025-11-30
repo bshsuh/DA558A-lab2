@@ -1,8 +1,0 @@
-* {
-    font-family: 'Roboto', 'Arial', 'sans-serif';
-}
-
-/* Shrinking rules if webpage window is 600px or smaller */
-@media all and (max-width: 600px) {
-
-}

@@ -1,0 +1,88 @@
+<!-- HTML document for external page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global-sheet.css"/>
+    <link rel="stylesheet" href="external-page-sheet.css"/>
+    <title>About me</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico"/>
+</head>
+<body>
+    <nav>
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='#mailtoform'">Contact</button>
+        <button onclick="location.href='./index.html#goals'">Goals</button>
+        <button class= "currentpage lastbutton" onclick="location.href='external-page.html'">External Page</button>
+    </nav>
+
+    <div class="wrapper"> <!-- Content wrapper -->
+        <!-- Hobbies section -->
+        <main id = "hobbies">
+            <h1>Hobbies</h1>
+            <section class ="hobbies">
+                <!-- Game images -->
+                <wrap> <!-- Image wrapper for consistent size -->
+                    <img
+                        src="images/factorio.jpeg"
+                        alt="factory game factorio"
+                    />
+                </wrap>
+
+                <wrap>
+                    <img
+                        src="images/warhammer.jpeg"
+                        alt="Strategy game Total War Warhammer 3"
+                    />
+                </wrap>
+
+                <wrap>
+                    <img
+                        src="images/hollowknight.png"
+                        alt="Action game Hollowknight Silksong"
+                    />
+                </wrap>
+            </section>
+            <p class ="hobbies-text">Playing single-player games while having someone else's gameplay on the side is my usual go-to</p>
+        </main>
+
+        <!-- Personal projects section -->
+        <article id = "projects">
+            <h1>Personal Projects</h1>
+            <ul>
+                <li>
+                    <b>Website development:</b> Creating a personal, hybrid website that contains my portfolio, 
+                    a prototype form for game challanges, a fictional store webpage and so on.
+                </li>
+                <li>
+                    <b>Finish a game prototype:</b> Using Unity to create a small game prototype to excerise what I have learned about game development.
+                </li>
+                <li>
+                    <b>Audio/video editing:</b> Practise audio and video editing using softwares like Audacity and DaVinci Resolve.
+                </li>
+            </ul>
+        </article>
+    </div>
+
+    <!-- Footer with contact form -->
+    <footer>
+        <form id = "mailtoform" action="mailto:bshr.suheil0001@stud.hkr.se" method="post" enctype="text/plain">
+            <h2 style= "margin-bottom: 0px">Contant me</h2>
+            <div class="inline-labels">
+                <label> Name
+                    <input type="text" name="name" required>
+                </label>
+                <label> Email
+                    <input type="email" name="email" required>
+                </label>
+            </div>
+            <label> Message
+                <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button type="submit">Send</button>
+        </form>
+        <p>&copy; 2025 Bisher Suhail</p>
+    </footer>
+</body>
+</html>
