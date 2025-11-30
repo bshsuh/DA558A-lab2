@@ -51,9 +51,8 @@ article > * {
 }
 
 .skills label {
-    width: 0; /* consistent spacing between labels and bars*/
-    min-width: 50px;
-    flex-shrink: 0;
+    width: 0; /* discard current text length to for uniform effects */
+    min-width: 50px; /* set a minimum width as a standard text length  */
 }
 
 /* Font size for skills and goals */
