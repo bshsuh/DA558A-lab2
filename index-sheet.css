@@ -47,12 +47,12 @@ article > * {
     display: flex;
     gap: 3em;
     padding: 5px;
-    align-items: center; /* align meter bars and label texts on the same level */
+    align-items: center; /* Align meter bars and label texts on the same level */
 }
 
 .skills label {
-    width: 0; /* discard current text length to for uniform effects */
-    min-width: 50px; /* set a minimum width as a standard text length  */
+    width: 0; /* Discard current text length to for uniform effects */
+    min-width: 50px; /* Set a minimum width as a standard text length  */
 }
 
 /* Font size for skills and goals */
