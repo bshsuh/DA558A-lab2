@@ -88,17 +88,36 @@
         <form id = "mailtoform" action="mailto:bshr.suheil0001@stud.hkr.se" method="post" enctype="text/plain">
             <h2 style= "margin-bottom: 0px">Contant me</h2>
             <div class="inline-labels">
-                <label> Name
+                <label> First Name
                     <input type="text" name="name" required>
                 </label>
+                <label> Last Name
+                    <input type ="text" name="surname" required>
+                </label>
+            </div>
+            <div class ="inline-labels">
                 <label> Email
                     <input type="email" name="email" required>
                 </label>
+                <label> Phone
+                    <input type="tel" name="phone">
+                </label>
             </div>
+            <label> Subject 
+                <select name="subject">
+                    <option value="generalInquery">General Inquery</option>
+                    <option value="careerInquery">Career Inquery</option>
+                    <option value="personalInquery">Personal Inquery</option>
+                </select>
+            </label>
             <label> Message
                 <textarea name="message" rows="4" required></textarea>
             </label>
-            <button type="submit">Send</button>
+            <div class ="inline-buttons">
+                <button class= "inline-button" type="submit">Send</button>
+                <button class= "inline-button" type="reset">Clear</button>
+            </div>
+
         </form>
         <p>&copy; 2025 Bisher Suhail</p>
     </footer>
