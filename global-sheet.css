@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 /* Set default font and colors for most elements */
-*:not(input, textarea, button) {
+*:not(input, select, option, textarea, button) {
     font-family: 'Roboto', 'Arial', 'sans-serif';
     background-color: #2f0803;
     color: #ece4e4;
@@ -66,27 +66,30 @@ meter::-webkit-meter-even-less-good-value {
   background: linear-gradient(#ffd9c8, #c04b3a);
 }
 
-/* Contact form layout */
-#mailtoform {
+#mailtoform, #mailtoform label {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 }
-
 /* Inline layouts */
 #mailtoform .inline-labels {
     display: flex;
-    margin-top: 10px;
 }
 
 /* Label styling in the contact form */
 #mailtoform label {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     font-size: 1.1em;
 }
 
-#mailtoform input, #mailtoform textarea {
+#mailtoform .sized-label {
+    width: 30%;
+}
+.sized-label * {
+    font-weight: bold;
+}
+
+#mailtoform input, #mailtoform textarea, #mailtoform select {
     padding: 0.6em; /* Bigger fields*/
     margin-bottom: 10px;
     border-width: 2px;
@@ -106,7 +109,7 @@ footer {
     padding: 1px;
 }
 
-footer, footer *:not(input, textarea, button) {
+footer, footer *:not(input, select, option, textarea, button) {
     background-color: #220501;
 }
 
@@ -114,6 +117,11 @@ footer * {
     margin: 8px;
 }
 
+@media all and (max-width: 800px) {
+    #mailtoform .sized-label {
+        width: 100%;
+    }
+}
 /* Larger navigation button font for wide screens */
 @media all and (min-width: 1200px) {
     nav button {
