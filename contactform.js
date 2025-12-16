@@ -61,6 +61,9 @@ const nameFields = [new InputField("first-name", /^[A-Za-z]*$/), new InputField(
 // No custom reglur expression were used for email validaiton
 const emailField = new InputField("email");
 
+// Regular expression for phone number format or empty fields.
+const phoneField = new InputField("phone", /^$|^0\d{9}$/);
+
 for (const field of nameFields) {
     // Ensure the element exists before adding event listener
     if (!field.element) {
@@ -71,9 +74,14 @@ for (const field of nameFields) {
     field.element.addEventListener("input", () => validateName(field));
 }
 
-// Listen when field becomes out of focus
+// Fire event when field becomes out of focus
 if (emailField.element) 
     emailField.element.addEventListener("blur", () => validateEmail(emailField));
+else console.warn(`Element with id ${emailField.id} not found.`);
+
+// Fire event when field becomes out of focus
+if (phoneField.element)
+    phoneField.element.addEventListener("blur", () => validatePhone(phoneField));
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Validation for both first and last name fields
@@ -86,4 +94,9 @@ function validateEmail(field) {
     if (!field.element.value) field.handleErrorMessage(false);
     // Check validity using HTML built-in validation checker 
     else  field.handleErrorMessage(!field.element.checkValidity(), "Invalid email address");
+}
+
+// Phone number validation, accepts empty fields
+function validatePhone(field) {
+    field.checkField("Unsupported phone format");
 }
