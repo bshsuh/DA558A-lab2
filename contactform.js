@@ -19,22 +19,26 @@ class InputField {
         this.moreRegexRules.push(newRule);
     }
     // Adds an error message as html element <p> in case of invalid inputs
-    checkField(message) {
+    // boolean doErr enables error message handling
+    checkField(message, doErr = true) {
         let value = this.element.value;
         // Only add one error message per field
         if (this.currentValidation && !this.regexRule.test(value)) {
-            this.element.insertAdjacentHTML("afterend", `<p>${message}</p>`);
+            if (doErr) this.element.insertAdjacentHTML("afterend", `<p>${message}</p>`);
             this.flagValidation();
         }
 
         else if (!this.currentValidation && this.regexRule.test(value)) {
-            let nextElement = this.element.nextElementSibling;
-            // Ensure that next html element is not null and is a <p> element 
-            if (nextElement && nextElement.tagName === "P") {
-                nextElement.remove();
+            if (doErr) {
+                let nextElement = this.element.nextElementSibling;
+                // Ensure that next html element is not null and is a <p> element 
+                if (nextElement && nextElement.tagName === "P") {
+                    nextElement.remove();
+                }
             }
             this.flagValidation();
         }
+        return this.currentValidation;
     }
 
     // Message handler for custom validation.
@@ -64,13 +68,15 @@ const emailField = new InputField("email");
 // Regular expression for phone number format or empty fields.
 const phoneField = new InputField("phone", /^$|^0\d{9}$/);
 
+const messageField = new InputField("message", /^.{20,}$/);
+
 for (const field of nameFields) {
     // Ensure the element exists before adding event listener
     if (!field.element) {
         console.warn(`Element with id ${field.id} not found.`);
         continue;
     }
-    // Add event listener for input validation
+    // Add event listener for input validation on every change
     field.element.addEventListener("input", () => validateName(field));
 }
 
@@ -82,6 +88,11 @@ else console.warn(`Element with id ${emailField.id} not found.`);
 // Fire event when field becomes out of focus
 if (phoneField.element)
     phoneField.element.addEventListener("blur", () => validatePhone(phoneField));
+else console.warn(`Element with id ${emailField.id} not found.`);
+
+// Fire event when on every change to the field
+if (messageField.element)
+    messageField.element.addEventListener("input", () => validateMessage(messageField));
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Validation for both first and last name fields
@@ -99,4 +110,16 @@ function validateEmail(field) {
 // Phone number validation, accepts empty fields
 function validatePhone(field) {
     field.checkField("Unsupported phone format");
+}
+
+// Message content validation, handles character counting
+function validateMessage(field) {
+    // Current message length
+    let charCount = field.element.value.length;
+    // Message counter text
+    let counterMessage = field.element.nextElementSibling;
+    // Update counter
+    counterMessage.textContent = `${charCount}/20 characters`;
+    // Validate field without handling user input error message
+    field.checkField("",false);
 }
