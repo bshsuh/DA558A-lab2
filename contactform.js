@@ -1,4 +1,3 @@
-debugCounter = 0;
 class InputField {
     constructor(id, regexRule = new RegExp(), moreRegexRules = [], currentValidation = true) 
     {
@@ -84,7 +83,7 @@ const phoneField = new InputField("phone", /^$|^0\d{9}$/);
 const messageField = new InputField("message", /^.{20,}$/);
 
 const formFields = [];
-const submitButton = document.getElementById("submit");
+const submitButton = document.getElementById("mailtoform");
 
 for (const field of nameFields) {
     // Ensure the element exists before adding event listener
@@ -120,7 +119,7 @@ if (messageField.element) {
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 if (submitButton)
-    submitButton.addEventListener("click", (e) => validateForm(submitButton, e));
+    submitButton.addEventListener("submit", (e) => validateForm(submitButton, e));
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Validation for both first and last name fields
@@ -147,20 +146,23 @@ function validatePhone(field) {
 
 // Message content validation, handles character counting and explains field requirement conditionally
 function validateMessage(field, doExplain = false) {
+    checkedField = field.checkField("", false);
     // Current message length
     let charCount = field.element.value.length;
     // Message counter text
     let counterMessage = field.element.nextElementSibling;
     // Update counter. Explain requirement depending on boolean doExplain
-    counterMessage.textContent = !doExplain ? `${charCount}/20 characters` : 
-        `Message must contain at least 20 characters, not ${charCount}`;
+    counterMessage.textContent = doExplain && !checkedField ? 
+        `Message must contain at least 20 characters, not ${charCount}`: 
+        `${charCount}/20 characters`;
     // Validate field without handling user input error message
-    return field.checkField("",false);
+    return checkedField;
 }
 
 // Fields that already have an ongoing error messages will not be affected by this
-function validateForm(button,e) {
+function validateForm(form,e) {
     e.preventDefault();
+
     isReady = true;
 
     for (const field of formFields) {
@@ -173,11 +175,25 @@ function validateForm(button,e) {
     }
     // Check form's readiness for submittion
     if (isReady) {
-        document.getElementById("valid-submission-message").hidden = false;
         document.getElementById("invalid-submission-message").hidden = true;
+        document.getElementById("valid-submission-message").hidden = false;
+        document.getElementById("submit").disabled = true;
+        new Promise(resolve => setTimeout(resolve, 3000))
+        .then(() => {
+            document.getElementById("reset").click();
+            document.getElementById("submit").disabled = false;
+            document.getElementById("valid-submission-message").hidden = true;
+        })
+        .catch(error => {
+            alert("Something went wrong while clearing the form");
+            console.error(error);
+            document.getElementById("submit").disabled = false;
+            document.getElementById("valid-submission-message").hidden = true;
+        });
+        
     }
     else {
-        document.getElementById("invalid-submission-message").hidden = false;
         document.getElementById("valid-submission-message").hidden = true;
+        document.getElementById("invalid-submission-message").hidden = false;
     }
 }
