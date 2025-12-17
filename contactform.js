@@ -1,3 +1,4 @@
+debugCounter = 0;
 class InputField {
     constructor(id, regexRule = new RegExp(), moreRegexRules = [], currentValidation = true) 
     {
@@ -22,6 +23,8 @@ class InputField {
     // boolean doErr enables error message handling
     checkField(message, doErr = true) {
         let value = this.element.value;
+        // Ensure field is ready for correct error message
+        if (doErr) this.clearDatedError(message);
         // Only add one error message per field
         if (this.currentValidation && !this.regexRule.test(value)) {
             if (doErr) this.element.insertAdjacentHTML("afterend", `<p>${message}</p>`);
@@ -39,6 +42,16 @@ class InputField {
             this.flagValidation();
         }
         return this.currentValidation;
+    }
+
+    // clear conflicting error messages and reset current validation
+    clearDatedError(newMessage) {
+        let nextElement = this.element.nextElementSibling;
+        
+        if (nextElement && nextElement.textContent !== newMessage) {
+            nextElement.remove();
+            this.currentValidation = true;
+        }
     }
 
     // Message handler for custom validation.
@@ -61,7 +74,7 @@ class InputField {
 
 // Create references for html elements 
 // Regular expression /^[A-Za-z]*$/ ensures fields may only contain letters. Empty strings are valid.
-const nameFields = [new InputField("first-name", /^[A-Za-z]*$/), new InputField("last-name", /^[A-Za-z]*$/)]
+const nameFields = [new InputField("first-name", /^[A-Za-z]+$/), new InputField("last-name", /^[A-Za-z]+$/)]
 // No custom reglur expression were used for email validaiton
 const emailField = new InputField("email");
 
@@ -69,6 +82,9 @@ const emailField = new InputField("email");
 const phoneField = new InputField("phone", /^$|^0\d{9}$/);
 
 const messageField = new InputField("message", /^.{20,}$/);
+
+const formFields = [];
+const submitButton = document.getElementById("submit");
 
 for (const field of nameFields) {
     // Ensure the element exists before adding event listener
@@ -78,48 +94,90 @@ for (const field of nameFields) {
     }
     // Add event listener for input validation on every change
     field.element.addEventListener("input", () => validateName(field));
+    formFields.push(field);
 }
 
 // Fire event when field becomes out of focus
-if (emailField.element) 
+if (emailField.element) {
     emailField.element.addEventListener("blur", () => validateEmail(emailField));
+    formFields.push(emailField);
+}
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Fire event when field becomes out of focus
-if (phoneField.element)
+if (phoneField.element) {
     phoneField.element.addEventListener("blur", () => validatePhone(phoneField));
+    formFields.push(phoneField);
+}
+   
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Fire event when on every change to the field
-if (messageField.element)
+if (messageField.element) {
     messageField.element.addEventListener("input", () => validateMessage(messageField));
+    formFields.push(messageField);
+}
+else console.warn(`Element with id ${emailField.id} not found.`);
+
+if (submitButton)
+    submitButton.addEventListener("click", (e) => validateForm(submitButton, e));
 else console.warn(`Element with id ${emailField.id} not found.`);
 
 // Validation for both first and last name fields
 function validateName(field) {
-    field.checkField("Name must contain letters only");
+    // Reset validation on empty fields
+    if (!field.element.value) {
+        field.clearDatedError("");
+        return false;
+    }
+    return field.checkField("Name must contain letters only");
 }
 
 function validateEmail(field) {
-    // Clear error message if field is empty
-    if (!field.element.value) field.handleErrorMessage(false);
+    isValid = field.element.checkValidity();
     // Check validity using HTML built-in validation checker 
-    else  field.handleErrorMessage(!field.element.checkValidity(), "Invalid email address");
+    field.handleErrorMessage(!isValid, "Invalid email address");
+    return isValid;
 }
 
 // Phone number validation, accepts empty fields
 function validatePhone(field) {
-    field.checkField("Unsupported phone format");
+    return field.checkField("Unsupported phone format");
 }
 
-// Message content validation, handles character counting
-function validateMessage(field) {
+// Message content validation, handles character counting and explains field requirement conditionally
+function validateMessage(field, doExplain = false) {
     // Current message length
     let charCount = field.element.value.length;
     // Message counter text
     let counterMessage = field.element.nextElementSibling;
-    // Update counter
-    counterMessage.textContent = `${charCount}/20 characters`;
+    // Update counter. Explain requirement depending on boolean doExplain
+    counterMessage.textContent = !doExplain ? `${charCount}/20 characters` : 
+        `Message must contain at least 20 characters, not ${charCount}`;
     // Validate field without handling user input error message
-    field.checkField("",false);
+    return field.checkField("",false);
+}
+
+// Fields that already have an ongoing error messages will not be affected by this
+function validateForm(button,e) {
+    e.preventDefault();
+    isReady = true;
+
+    for (const field of formFields) {
+        // Treat email and message validation differently because of their special validation
+        if (field.id == "email") {if (!validateEmail(field)) isReady = false;}
+        else if (field.id == "message") {if (!validateMessage(field, true)) isReady = false;}
+        // Skip checking if field is currently flagged invalid
+        else if(!field.currentValidation || !field.checkField("Required field is empty")) 
+            isReady = false;       
+    }
+    // Check form's readiness for submittion
+    if (isReady) {
+        document.getElementById("valid-submission-message").hidden = false;
+        document.getElementById("invalid-submission-message").hidden = true;
+    }
+    else {
+        document.getElementById("invalid-submission-message").hidden = false;
+        document.getElementById("valid-submission-message").hidden = true;
+    }
 }
