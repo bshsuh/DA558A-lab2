@@ -8,6 +8,10 @@
     color: #ece4e4;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* Remove default body margin for full-width backgrounds */
 body {
     margin: 0px;
@@ -89,7 +93,7 @@ meter::-webkit-meter-even-less-good-value {
     font-weight: bold;
 }
 
-#mailtoform input, #mailtoform textarea, #mailtoform select {
+input, textarea, select {
     padding: 0.6em; /* Bigger fields*/
     margin-bottom: 10px;
     border-width: 2px;
@@ -102,6 +106,23 @@ meter::-webkit-meter-even-less-good-value {
     margin-top: 5px;
     width: 15%;
     font-size: 1.1em;
+}
+.submission-notices * {
+    display: inline-block; 
+    padding: 10px; 
+    font-size: 1.1em; 
+    text-align: center;
+    border-radius: 10px;
+}
+
+#valid-submission-message {
+    color: rgb(199, 255, 199); 
+    background-color: #004900; 
+}
+
+#invalid-submission-message {
+    color: rgb(254, 205, 205); 
+    background-color: #880000; 
 }
 
 /* Footer padding and background */
@@ -128,3 +149,32 @@ footer * {
         font-size: 1.5em;
     }
 }
+
+/*=========== Dynamic field effects =============*/
+
+#mailtoform *:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(52, 0, 185);
+}
+
+.default-field {
+    background-color:rgba(255, 255, 255, 0.945);
+    border: 2px solid rgb(79, 79, 79);
+    box-shadow: none;
+}
+
+.valid {
+    border: 3px solid rgb(2, 203, 2);
+}
+
+.invalid {
+    border: 3px solid rgb(196, 0, 0);
+}
+
+.valid:focus {
+    background-color: rgb(227, 255, 218);
+}
+
+.invalid:focus {
+    background-color: rgb(255, 218, 218);
+} 

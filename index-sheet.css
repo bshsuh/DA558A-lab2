@@ -86,8 +86,8 @@ article li {
         flex-direction: column;
     }
     #mailtoform .inline-labels {
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
     }
 }
 
