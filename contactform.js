@@ -89,20 +89,20 @@ class InputField {
         }
     }
 }
-
 // Create references for html elements 
 // Regular expression /^[A-Za-z]*$/ ensures fields may only contain letters. Empty strings are valid.
 const nameFields = [new InputField("first-name", /^[A-Za-z]+$/), new InputField("last-name", /^[A-Za-z]+$/)]
 // No custom reglur expression were used for email validaiton
 const emailField = new InputField("email");
-
 // Regular expression for phone number format or empty fields.
 const phoneField = new InputField("phone", /^$|^0\d{9}$/);
-
 const messageField = new InputField("message", /^.{20,}$/);
-
 const formFields = [];
-const submitButton = document.getElementById("mailtoform");
+const submitButton = document.getElementById("submit");
+const validMessage = document.getElementById("valid-submission-message");
+const invalidMessage = document.getElementById("invalid-submission-message");
+const myForm = document.getElementById("mailtoform");
+const clearButton = document.getElementById("reset-button");
 
 for (const field of nameFields) {
     // Ensure the element exists before adding event listener
@@ -116,32 +116,34 @@ for (const field of nameFields) {
     formFields.push(field);
 }
 
-// Fire event when field becomes out of focus
+// Check provided email when field becomes out of focus
 if (emailField.element) {
     emailField.element.addEventListener("blur", () => validateEmail(emailField));
     formFields.push(emailField);
-}
-else console.warn(`Element with id ${emailField.id} not found.`);
+} else console.warn(`Element with id ${emailField.id} not found.`);
 
-// Fire event when field becomes out of focus
+// Check phone number when field becomes out of focus
 if (phoneField.element) {
-    phoneField.element.addEventListener("blur", () => validatePhone(phoneField));
+    phoneField.element.addEventListener("blur", () => {validatePhone(phoneField)});
     formFields.push(phoneField);
-}
+} else console.warn(`Element with id ${emailField.id} not found.`);
    
-else console.warn(`Element with id ${emailField.id} not found.`);
-
-// Fire event when on every change to the field and on losing focus
+// Check message content on every change to the field and on losing focus
 if (messageField.element) {
     messageField.element.addEventListener("input", () => validateMessage(messageField));
     messageField.element.addEventListener("blur", () => validateMessage(messageField));
     formFields.push(messageField);
-}
-else console.warn(`Element with id ${emailField.id} not found.`);
+} else console.warn(`Element with id ${emailField.id} not found.`);
 
-if (submitButton)
-    submitButton.addEventListener("submit", (e) => validateForm(submitButton, e));
-else console.warn(`Element with id ${emailField.id} not found.`);
+// Check on all form fields on submission
+if (myForm) {
+    myForm.addEventListener("submit", (e) => validateForm(e));
+} else console.warn(`Element with id ${myForm.id} not found.`);
+
+// Check reset button on clearing
+if (clearButton && myForm) {
+    clearButton.addEventListener("click", (e) => {e.preventDefault; clearForm(myForm)} );
+} else console.warn(`Element with id ${clearButton.id} or ${myForm.id} not found.`);
 
 // Validation for both first and last name fields
 function validateName(field) {
@@ -196,12 +198,22 @@ function validateMessage(field, isSubmitting = false) {
     return isValid;
 }
 
+function clearForm(myForm) {
+    myForm.reset();
+    for (const field of formFields) { 
+        // Special treatment of message input field due to permanent feedback message
+        if (field.id == "message") {validateMessage(field); continue;}
+        field.styliseField(); field.clearDatedError();
+    }
+
+    validMessage.hidden = true;
+    invalidMessage.hidden = true;
+}
+
 // Fields that already have an ongoing error messages will not be affected by this
-function validateForm(form,e) {
+function validateForm(e) {
     e.preventDefault();
-
     isReady = true;
-
     for (const field of formFields) {
         // Different email and message validation due to special validation
         if (field.id == "email") {
@@ -219,26 +231,25 @@ function validateForm(form,e) {
 
     // Check form's readiness for submittion
     if (isReady) {
-        document.getElementById("invalid-submission-message").hidden = true;
-        document.getElementById("valid-submission-message").hidden = false;
-        document.getElementById("submit").disabled = true;
+        invalidMessage.hidden = true;
+        validMessage.hidden = false;
+        submitButton.disabled = true;
         // Activate a timed confimation if submission was successful 
         new Promise(resolve => setTimeout(resolve, 3000))
         .then(() => {
-            document.getElementById("reset").click();
-            document.getElementById("submit").disabled = false;
-            document.getElementById("valid-submission-message").hidden = true;
+            submitButton.disabled = false;
+            clearForm(myForm);
         })
         .catch(error => {
             alert("Something went wrong while clearing the form");
             console.error(error);
-            document.getElementById("submit").disabled = false;
-            document.getElementById("valid-submission-message").hidden = true;
+            submitButton.disabled = false;
+            validMessage.hidden = true;
         });
         
     }
     else {
-        document.getElementById("valid-submission-message").hidden = true;
-        document.getElementById("invalid-submission-message").hidden = false;
+        validMessage.hidden = true;
+        invalidMessage.hidden = false;
     }
 }
