@@ -85,10 +85,6 @@ article li {
     article {
         flex-direction: column;
     }
-    #mailtoform .inline-labels {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 /* Bigger font size for larger screens */
@@ -99,7 +95,6 @@ article li {
     .about-me, .card li {
         font-size: 1.3em;
     }
-
     article label, article li * {
         font-size: 23px;
     }

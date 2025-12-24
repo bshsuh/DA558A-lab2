@@ -139,6 +139,10 @@ footer * {
 }
 
 @media all and (max-width: 800px) {
+    #mailtoform .inline-labels {
+        display: flex;
+        flex-direction: column;
+    }
     #mailtoform .sized-label {
         width: 100%;
     }
