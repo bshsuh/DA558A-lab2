@@ -2,10 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 /* Set default font and colors for most elements */
-*:not(input, textarea, button) {
+*:not(input, select, option, textarea, button) {
     font-family: 'Roboto', 'Arial', 'sans-serif';
     background-color: #2f0803;
     color: #ece4e4;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 /* Remove default body margin for full-width backgrounds */
@@ -66,27 +70,30 @@ meter::-webkit-meter-even-less-good-value {
   background: linear-gradient(#ffd9c8, #c04b3a);
 }
 
-/* Contact form layout */
-#mailtoform {
+#mailtoform, #mailtoform label {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 }
-
 /* Inline layouts */
 #mailtoform .inline-labels {
     display: flex;
-    margin-top: 10px;
 }
 
 /* Label styling in the contact form */
 #mailtoform label {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     font-size: 1.1em;
 }
 
-#mailtoform input, #mailtoform textarea {
+#mailtoform .sized-label {
+    width: 30%;
+}
+.sized-label * {
+    font-weight: bold;
+}
+
+input, textarea, select {
     padding: 0.6em; /* Bigger fields*/
     margin-bottom: 10px;
     border-width: 2px;
@@ -100,13 +107,30 @@ meter::-webkit-meter-even-less-good-value {
     width: 15%;
     font-size: 1.1em;
 }
+.submission-notices * {
+    display: inline-block; 
+    padding: 10px; 
+    font-size: 1.1em; 
+    text-align: center;
+    border-radius: 10px;
+}
+
+#valid-submission-message {
+    color: rgb(199, 255, 199); 
+    background-color: #004900; 
+}
+
+#invalid-submission-message {
+    color: rgb(254, 205, 205); 
+    background-color: #880000; 
+}
 
 /* Footer padding and background */
 footer {
     padding: 1px;
 }
 
-footer, footer *:not(input, textarea, button) {
+footer, footer *:not(input, select, option, textarea, button) {
     background-color: #220501;
 }
 
@@ -114,9 +138,47 @@ footer * {
     margin: 8px;
 }
 
+@media all and (max-width: 800px) {
+    #mailtoform .inline-labels {
+        display: flex;
+        flex-direction: column;
+    }
+    #mailtoform .sized-label {
+        width: 100%;
+    }
+}
 /* Larger navigation button font for wide screens */
 @media all and (min-width: 1200px) {
     nav button {
         font-size: 1.5em;
     }
 }
+
+/*=========== Dynamic field effects =============*/
+
+#mailtoform *:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(52, 0, 185);
+}
+
+.default-field {
+    background-color:rgba(255, 255, 255, 0.945);
+    border: 2px solid rgb(79, 79, 79);
+    box-shadow: none;
+}
+
+.valid {
+    border: 3px solid rgb(2, 203, 2);
+}
+
+.invalid {
+    border: 3px solid rgb(196, 0, 0);
+}
+
+.valid:focus {
+    background-color: rgb(227, 255, 218);
+}
+
+.invalid:focus {
+    background-color: rgb(255, 218, 218);
+} 
