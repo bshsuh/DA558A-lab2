@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="external-page-sheet.css"/>
-    <link rel="stylesheet" href="global-sheet.css"/>
+    <link rel="stylesheet" href="external-page-sheet.css">
+    <link rel="stylesheet" href="global-sheet.css">
     <title>About me</title>
-    <link rel="icon" type="image/png" href="images/favicon.ico"/>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
 </head>
 <body>
     <nav>
@@ -23,26 +23,26 @@
             <h1>Hobbies</h1>
             <section class ="hobbies">
                 <!-- Game images -->
-                <wrap> <!-- Image wrapper for consistent size -->
+                <div> <!-- Image wrapper for consistent size -->
                     <img
                         src="images/factorio.jpeg"
                         alt="factory game factorio"
-                    />
-                </wrap>
+                    >
+                </div>
 
-                <wrap>
+                <div>
                     <img
                         src="images/warhammer.jpeg"
                         alt="Strategy game Total War Warhammer 3"
-                    />
-                </wrap>
+                    >
+                </div>
 
-                <wrap>
+                <div>
                     <img
                         src="images/hollowknight.png"
                         alt="Action game Hollowknight Silksong"
-                    />
-                </wrap>
+                    >
+                </div>
             </section>
             <p class ="hobbies-text">Playing single-player games while having someone 
                                         else's gameplay on the side is my usual go-to</p>
@@ -95,6 +95,7 @@
             </label>
             <label> Message
                 <textarea id= "message" name="message" rows="4" required></textarea>
+                <!-- Validator ignored in this instance to maintain uniform element usage p for messages -->
                 <p id= "message-counter"> 0/20 characters</p>
             </label>
             <div class ="inline-buttons">
@@ -110,6 +111,7 @@
         </form>
         <p>&copy; 2025 Bisher Suhail</p>
     </footer>
+    <script src="contactform.js"></script>
 </body>
-<script src="contactform.js"></script>
+
 </html>

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About me</title>
-    <link rel="icon" type="image/png" href="images/favicon.ico"/>
-    <link rel="stylesheet" href="global-sheet.css"/>
-    <link rel="stylesheet" href="index-sheet.css"/>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="global-sheet.css">
+    <link rel="stylesheet" href="index-sheet.css">
 </head>
 <body>
     <!-- Navigation bar -->
@@ -26,7 +26,7 @@
                     class= "portrait"
                     src= "images/me.png"
                     alt= "Bisher Suhail, author of the website"
-                />
+                >
                 <!-- Personal info in bullet points -->
                 <ul class= "personal-info">
                     <li><b>Name:</b> Bisher Suhail</li>
@@ -73,11 +73,11 @@
             <div id = "goals">
                 <h1>Goals</h1>
                 <ul>
-                    <!-- Using <wrap> to control markers and text size seperately-->
-                    <li><wrap>Get the bachelor degree</wrap></li>
-                    <li><wrap>Make a couple of projects to improve my overall programming skills</wrap></li>
-                    <li><wrap>Find a suitable job for my current skills</wrap></li>
-                    <li><wrap>Get a driving license</wrap></li>
+                    <!-- Using <div> to control markers and text size seperately-->
+                    <li><div>Get the bachelor degree</div></li>
+                    <li><div>Make a couple of projects to improve my overall programming skills</div></li>
+                    <li><div>Find a suitable job for my current skills</div></li>
+                    <li><div>Get a driving license</div></li>
                 </ul>
             </div>
         </article>
@@ -110,7 +110,8 @@
             </label>
             <label> Message
                 <textarea id= "message" name="message" rows="4" required></textarea>
-                <p id= "message-counter"> 0/20 characters</p>
+                <!-- Validator ignored in this instance to maintain uniform element usage p for messages -->
+                <p id= "message-counter"> 0/20 characters</p> 
             </label>
             <div class ="inline-buttons">
                 <button class= "inline-button" id="submit" type="submit">Send</button>
@@ -125,6 +126,7 @@
         </form>
         <p>&copy; 2025 Bisher Suhail</p>
     </footer>
+    <script src="contactform.js"></script>
 </body>
-<script src="contactform.js"></script>
+
 </html>
