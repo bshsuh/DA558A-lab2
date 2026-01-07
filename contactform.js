@@ -45,7 +45,7 @@ class InputField {
         return this.currentValidation;
     }
 
-    // clear conflicting error messages and reset current validation
+    // Clear conflicting error messages and reset current validation
     clearDatedError(newMessage) {
         let nextElement = this.element.nextElementSibling;
         
@@ -235,7 +235,7 @@ function validateForm(e) {
         validMessage.hidden = false;
         submitButton.disabled = true;
         // Activate a timed confimation if submission was successful 
-        new Promise(resolve => setTimeout(resolve, 3000))
+        new Promise(resolve => setTimeout(resolve, 5000))
         .then(() => {
             submitButton.disabled = false;
             clearForm(myForm);
